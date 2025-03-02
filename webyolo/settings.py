@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'webyolo.accounts',
     'webyolo.tasks',
-    'webyolo.datasets'
+    'webyolo.datasets',
+    'webyolo.experiments'
 ]
 
 MIDDLEWARE = [
