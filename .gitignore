@@ -174,3 +174,5 @@ cython_debug/
 /media/
 /node_modules/
 /runs/
+
+*.pt
