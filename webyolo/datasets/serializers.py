@@ -4,7 +4,7 @@ from .models import Dataset, LeaderBoardEntry
 class DatasetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dataset
-        fields = '__all__'
+        fields = ['id', 'name', 'description', 'file', 'create_at', 'is_public']
 
 class LeaderboardEntrySerializer(serializers.ModelSerializer):
     class Meta:

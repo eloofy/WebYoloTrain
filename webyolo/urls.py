@@ -15,8 +15,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/auth/', include('webyolo.accounts.urls')),
+    path('api/auth/', include('webyolo.authentication.urls')),
+    path('api/datasets/', include('webyolo.datasets.urls')),
+    path('api/tasks/', include('webyolo.tasks.urls')),
+    path('api/inference/', include('webyolo.inference.urls')),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
