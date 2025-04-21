@@ -1,23 +1,24 @@
-# accounts/models.py
 from django.contrib.auth.hashers import make_password, check_password
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, username, email, password=None, **extra_fields):
+    def create_user(self, nickname, email, password, **extra_fields):
         """
         Create user
         """
         if not email:
             raise ValueError('The Email field must be set')
+        if not nickname:
+            raise ValueError('Nickname must be set')
         email = self.normalize_email(email)
-        user = self.model(username=username, email=email, **extra_fields)
+        user = self.model(nickname=nickname, email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, email, password=None, **extra_fields):
+    def create_superuser(self, username, email, password, **extra_fields):
         """
         Set user as superuser
         """
@@ -30,10 +31,9 @@ class MyUserManager(BaseUserManager):
 
 class MyUser(AbstractBaseUser, PermissionsMixin):
     id = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=300)
-    nickname = models.CharField(max_length=50, null=True,)
+    nickname = models.CharField(max_length=50, unique=True)
     bio = models.TextField(blank=True, null=True)
     location = models.CharField(max_length=50, blank=True, null=True)
     date_joined = models.DateTimeField(auto_now_add=True)
@@ -41,13 +41,13 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 
     objects = MyUserManager()
 
-    REQUIRED_FIELDS = ['email', 'password']
+    REQUIRED_FIELDS = ['email', 'password', ]
 
-    USERNAME_FIELD = 'username'
+    USERNAME_FIELD = 'nickname'
     EMAIL_FIELD = 'email'
 
     def __str__(self):
-        return self.username
+        return self.nickname
 
     def set_password(self, raw_password):
         self.password = make_password(raw_password)

@@ -1,15 +1,25 @@
 [project]
-name = "webyolotrain"
+name = "webyolo"
 version = "0.1.0"
 description = ""
 authors = [
     {name = "anatoly",email = "t.vlasov23@mail.ru"}
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = "3.11"
 dependencies = [
-    "django (>=5.1.6,<6.0.0)",
-    "psycopg2 (>=2.9.10,<3.0.0)"
+    "django (>=5.1.7,<6.0.0)",
+    "djangorestframework (>=3.15.2,<4.0.0)",
+    "django-sslserver (>=0.22,<0.23)",
+    "django-cors-headers (>=4.7.0,<5.0.0)",
+    "psycopg2 (>=2.9.10,<3.0.0)",
+    "djangorestframework-simplejwt (>=5.5.0,<6.0.0)",
+    "django-redis (>=5.4.0,<6.0.0)",
+    "sentence-transformers (>=4.0.2,<5.0.0)",
+    "qdrant-client (>=1.13.3,<2.0.0)",
+    "ultralytics (>=8.3.107,<9.0.0)",
+    "celery (>=5.5.1,<6.0.0)",
+    "clearml (>=1.18.0,<2.0.0)"
 ]
 
 
